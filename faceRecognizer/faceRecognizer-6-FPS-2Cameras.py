@@ -27,9 +27,11 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 frameStart = time.time()
 while True:
     frameStart = time.time()
-    _,frame1 = cam1.read()
-    _,frame2 = cam2.read()
-
+    try:
+        _,frame1 = cam1.read()
+        _,frame2 = cam2.read()
+    except:
+        print('Cannot get frames')
     frame1Small = cv2.resize(frame1,(0,0),fx=scaleFactor,fy=scaleFactor)
     frame1RGB = cv2.cvtColor(frame1Small,cv2.COLOR_BGR2RGB)
     frame2Small = cv2.resize(frame2,(0,0),fx=scaleFactor,fy=scaleFactor)
